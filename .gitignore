@@ -1,12 +1,11 @@
 # History files
 .Rhistory
-
 # Example code in package build process
 *-Ex.R
-
 .Rprofile
 .Rproj.user
 density.Rproj
 movie2frames/out
 spliced.mp4
 truly_amazing_teacher.mp4
+notes.html
