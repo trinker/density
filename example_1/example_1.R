@@ -46,18 +46,40 @@ image(x)
 contour(x, nlevels = 11, axes = FALSE, frame = TRUE, add = TRUE)
 dev.off()
 
+png("example_1/dense5.png", width=600, height=600)
 persp(x, theta = 30, phi = 30, expand = 0.5, col = "lightblue")
+dev.off()
 
-library(rgl)
 
-plot3d(x, theta = 30, phi = 30, expand = 0.5, col = "lightblue")
-p_load(TeachingDemos)
-with(dataset, rotate.persp(x, y, perc))
+#==========
 
-z <- 2 * volcano        # Exaggerate the relief
-x <- 10 * (1:nrow(z))   # 10 meter spacing (S to N)
-y <- 10 * (1:ncol(z))   # 10 meter spacing (E to W)
-rotate.persp(x,y,z)
+ggplot(dataset2, aes(x, y)) +
+    stat_density2d(geom="tile", aes(fill = ..density..), contour = FALSE) +
+    scale_fill_gradient(low = "red", high = "yellow") + 
+    xlim(c(15, 155)) + ylim(c(130, 270))
+
+ggplot(dataset2, aes(x, y)) +
+    stat_density2d(geom="tile", aes(fill = ..density..), contour = FALSE) +
+    scale_fill_gradient(low = "blue", high = "yellow") + 
+    xlim(c(15, 155)) + ylim(c(130, 270))
+
+
+
+
+
+colfunc <- colorRampPalette(c("darkblue", "lightblue", "green", "yellow", "red"))
+
+ggplot(dataset2, aes(x, y)) +
+    stat_density2d(geom="tile", aes(fill = ..density..), contour = FALSE) +
+    scale_fill_gradientn(colours=colfunc(400)) + 
+    xlim(c(15, 155)) + ylim(c(130, 270)) +
+    geom_density2d(colour="black", bins=10) +
+    geom_point() + 
+    geom_text(aes(label=contesto), size=3, hjust=-.25, vjust=.75) +
+    guides(fill = guide_colorbar(barwidth = 0.5, barheight = 10)) +
+    theme(legend.title=element_blank())
+
+ggsave("example_1/dense6.png", width=6, height=6)
 
 
 
