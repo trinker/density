@@ -28,3 +28,10 @@ ffmpeg -i spliced.mp4 -r 5 -f image2 out/out_04/image-%07d.png
 
 
 setwd(wd)
+
+
+ffmpeg -i a.mp4 -ss 00:00:20.0 -c copy -t 5 spliced.mp4
+
+
+
+

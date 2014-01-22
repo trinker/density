@@ -10,7 +10,7 @@
 ## 9       May boat -33.75785 150.6152  400
 ## 10      May fyke -33.75762 150.6154  253
 
-p_load(ggplot2); p_load(ggmap)
+p_load(ggplot2, ggmap)
 
 fishdata <- 
 structure(list(month = structure(c(1L, 1L, 1L, 1L, 1L, 2L, 2L, 
